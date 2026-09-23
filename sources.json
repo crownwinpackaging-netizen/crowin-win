@@ -1,0 +1,14 @@
+{
+  "company": {
+    "name": "Dongguan Crown Win Package Co., Ltd.",
+    "employees": 85,
+    "area_m2": 4200,
+    "lines": 5,
+    "machines": 18,
+    "fsc": "SAI-COC-004166",
+    "source": "User message, 2026-09-14"
+  },
+  "images": "Original company catalogue photos plus locally supplied box label photographs. See asset-sources.json for selected replacement paths. No illustrative bag/candle images remain in the delivered pages.",
+  "contact": "brina@crownwinbox.com, catalogue page 27",
+  "publication": "Local preview. No domain or form backend connected."
+}

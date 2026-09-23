@@ -1,0 +1,49 @@
+
+    .filter-btn{padding:9px 22px;border-radius:100px;border:1px solid rgba(255,255,255,0.15);background:transparent;color:rgba(255,255,255,0.65);font-family:'Montserrat',sans-serif;font-size:0.8rem;font-weight:700;cursor:pointer;transition:all 0.2s;text-transform:uppercase;letter-spacing:1px}
+
+    .filter-btn:hover,.filter-btn.active{background:var(--gold);color:var(--dark);border-color:var(--gold)}
+
+
+    .product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:32px}
+
+    .prod-card{background:var(--dark3);border-radius:16px;border:1px solid rgba(255,255,255,0.06);overflow:hidden;transition:all 0.35s;display:flex;flex-direction:column}
+
+    .prod-card:hover{border-color:rgba(201,168,76,0.45);transform:translateY(-7px);box-shadow:0 28px 64px rgba(0,0,0,0.55)}
+
+    .prod-img{aspect-ratio:16/10;overflow:hidden;position:relative;background:#f4f0e8}
+
+    .prod-img img{width:100%;height:100%;object-fit:contain;transition:transform 0.45s}
+
+    .prod-card:hover .prod-img img{transform:scale(1.06)}
+
+    .prod-badge{position:absolute;top:14px;left:14px;background:var(--gold);color:var(--dark);font-family:'Montserrat',sans-serif;font-weight:800;font-size:0.7rem;letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:100px}
+
+    .prod-body{padding:26px;flex:1;display:flex;flex-direction:column;gap:14px}
+
+    .prod-name{font-family:'Montserrat',sans-serif;font-weight:800;font-size:1.25rem;line-height:1.2;color:var(--white)}
+
+    .prod-desc{color:var(--gray);font-size:0.88rem;line-height:1.7;flex:1}
+
+    .prod-specs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+    .spec-item{background:rgba(255,255,255,0.04);border-radius:8px;padding:10px 12px}
+
+    .spec-key{font-size:0.65rem;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+
+    .spec-val{font-size:0.88rem;font-weight:600;color:var(--white)}
+
+    .prod-finishes{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+
+    .finish-tag{font-size:0.7rem;padding:4px 10px;border-radius:100px;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.25);color:rgba(255,255,255,0.7)}
+
+    .prod-actions{display:flex;gap:10px;margin-top:8px}
+
+    .prod-actions a,.prod-actions button{flex:1;text-align:center;padding:12px;border-radius:8px;font-weight:800;font-size:0.85rem;text-decoration:none;transition:all 0.2s;cursor:pointer;font-family:'Montserrat',sans-serif}
+
+    .prod-quote{background:var(--gold);color:var(--dark);border:none}
+
+    .prod-quote:hover{background:var(--gold-light)}
+
+    .prod-detail{background:transparent;color:var(--white);border:1px solid rgba(255,255,255,0.2)}
+
+    .prod-detail:hover{border-color:var(--gold);color:var(--gold)}
