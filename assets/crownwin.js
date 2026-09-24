@@ -12,7 +12,30 @@ const form=document.querySelector('#rfq');
 if(form){
  const p=new URLSearchParams(location.search).get('product');if(p)form.elements.namedItem('product').value=p.slice(0,300);
  function prepare(){if(!form.reportValidity())return null;const d=new FormData(form);const brief=`Hello Crown Win,\n\nI would like to discuss custom packaging.\n\nName: ${d.get('name')}\nWork email: ${d.get('email')}\nCompany: ${d.get('company')}\nDelivery country: ${d.get('country')}\nPackaging: ${d.get('product')}\nQuantity: ${d.get('quantity')}\nProduct dimensions: ${d.get('dimensions')}\nMatching paper bags: ${d.has('bags')?'Yes':'Not requested'}\nAssess foldable structure: ${d.has('foldable')?'Yes':'Not requested'}\n\nProject details:\n${d.get('details')}\n\nPlease advise suitable options and the next steps.`;document.querySelector('#draft').hidden=false;document.querySelector('#draft-text').value=brief;document.querySelector('#email-draft').href='mailto:kevinlu@box-label.com?subject='+encodeURIComponent('Packaging enquiry: '+d.get('product'))+'&body='+encodeURIComponent(brief);document.querySelector('#form-status').textContent='Draft prepared. Nothing has been sent.';return brief}
- form.addEventListener('submit',e=>{e.preventDefault();prepare()});
+ async function submitQuote(){
+  const brief=prepare();
+  if(!brief)return;
+  const endpoint='https://formspree.io/f/xbglybqq';
+  const button=form.querySelector('button[type="submit"]');
+  const originalText=button?button.textContent:'';
+  const payload=new FormData(form);
+  payload.set('_subject','New Crown Win packaging enquiry');
+  payload.set('_replyto',String(payload.get('email')||''));
+  if(button){button.disabled=true;button.textContent='Sending...'}
+  try{
+   const response=await fetch(endpoint,{method:'POST',body:payload,headers:{Accept:'application/json'}});
+   if(!response.ok)throw new Error('HTTP '+response.status);
+   document.querySelector('#form-status').textContent='Thank you — your enquiry has been sent. We will reply by email.';
+   document.querySelector('#draft').hidden=true;
+   form.reset();
+  }catch(error){
+   console.error('[crownwin quote-form]',error);
+   document.querySelector('#form-status').textContent='The enquiry could not be sent. Please use WhatsApp or the email link below.';
+  }finally{
+   if(button){button.disabled=false;button.textContent=originalText}
+  }
+ }
+ form.addEventListener('submit',e=>{e.preventDefault();submitQuote()});
  document.querySelector('#copy-brief').addEventListener('click',async()=>{const brief=prepare();if(!brief)return;try{await navigator.clipboard.writeText(brief);document.querySelector('#form-status').textContent='Brief copied. Paste it into an email to kevinlu@box-label.com.'}catch{const text=document.querySelector('#draft-text');text.focus();text.select();document.querySelector('#form-status').textContent='Your brief is selected below. Copy it into your email.'}});
 }
 /* ===== 首页报价表单 #quoteForm（2026-09-20，照 xinhua site.js）===== */
