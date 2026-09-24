@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 const siteRoot = process.cwd();
 const baseUrl = 'https://www.cwpackingbox.com';
-const excludedPages = new Set(['404.html', 'index.html']);
+const excludedPages = new Set(['404.html', 'index.html', 'thank-you.html']);
 
 const pages = readdirSync(siteRoot, { withFileTypes: true })
   .filter((entry) => entry.isFile() && entry.name.endsWith('.html'))

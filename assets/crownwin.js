@@ -40,9 +40,9 @@ if(form){
   try{
    const response=await fetch(endpoint,{method:'POST',body:payload,headers:{Accept:'application/json'}});
    if(!response.ok)throw new Error('HTTP '+response.status);
-   document.querySelector('#form-status').textContent='Thank you — your enquiry has been sent. We will reply by email.';
-   document.querySelector('#draft').hidden=true;
-   form.reset();
+   window.gtag&&window.gtag('event','generate_lead',{form_id:'rfq',method:'formspree'});
+   window.location.href='thank-you.html';
+   return;
   }catch(error){
    console.error('[crownwin quote-form]',error);
    document.querySelector('#form-status').textContent='The enquiry could not be sent. Please use WhatsApp or the email link below.';
@@ -103,7 +103,7 @@ if(form){
     fetch(endpoint,{method:'POST',body:data,headers:{Accept:'application/json'}})
      .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r})
      .then(function(){
-      var thanks=form.getAttribute('data-thanks');
+      var thanks=form.getAttribute('data-thanks') || 'thank-you.html';
       if(thanks){location.href=thanks;return}
       showStatus('Thank you, we received your details.');form.reset();
       if(fileLabel)fileLabel.textContent='No file selected';if(drop)drop.classList.remove('has-file');
