@@ -22,6 +22,15 @@ document.addEventListener('click',e=>{if(!e.target.closest('.nav-dropdown'))clos
 document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;const open=dropdowns.find(b=>b.getAttribute('aria-expanded')==='true');if(open){closeDropdowns();open.focus()}else if(toggle.getAttribute('aria-expanded')==='true'){toggle.setAttribute('aria-expanded','false');links.classList.remove('open');toggle.focus()}});
 document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{let count=0;document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('active',b===button);b.setAttribute('aria-pressed',String(b===button))});document.querySelectorAll('[data-category]').forEach(card=>{card.hidden=button.dataset.filter!=='all'&&card.dataset.category!==button.dataset.filter;if(!card.hidden)count++});document.querySelector('#filter-count').textContent=`${count} packaging example${count===1?'':'s'}`}));
 const back=document.querySelector('.back-top');window.addEventListener('scroll',()=>{back.hidden=window.scrollY<600},{passive:true});back.addEventListener('click',()=>{window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});document.querySelector('.logo').focus()});
+document.addEventListener('click',function(event){
+ const link=event.target.closest('a[href*="wa.me/"]');
+ if(!link)return;
+ window.gtag&&window.gtag('event','whatsapp_click',{
+  link_url:link.href,
+  link_text:(link.textContent||'').trim().slice(0,100),
+  page_location:location.href
+ });
+});
 document.querySelectorAll('.zoom-image').forEach(link=>link.addEventListener('click',event=>{event.preventDefault();const modal=document.createElement('dialog');modal.className='lightbox';const image=document.createElement('img');image.src=link.href;image.alt=link.querySelector('img').alt;const close=document.createElement('button');close.textContent='×';close.setAttribute('aria-label','Close image');modal.append(image,close);document.body.append(modal);modal.showModal();close.focus();const dismiss=()=>{modal.close();modal.remove();link.focus()};close.addEventListener('click',dismiss);modal.addEventListener('click',e=>{if(e.target===modal)dismiss()});modal.addEventListener('cancel',e=>{e.preventDefault();dismiss()})}));
 const form=document.querySelector('#rfq');
 if(form){
