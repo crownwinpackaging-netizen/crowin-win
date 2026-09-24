@@ -37,16 +37,19 @@ jobs:
       - name: Generate sitemap
         run: node scripts/generate-sitemap.mjs
 
-      - name: Commit sitemap when changed
+      - name: Ensure SEO head tags
+        run: node scripts/ensure-seo-head.mjs
+
+      - name: Commit generated SEO files when changed
         shell: bash
         run: |
-          if git diff --quiet -- sitemap.xml; then
-            echo "Sitemap is already up to date."
+          if git diff --quiet -- sitemap.xml '*.html'; then
+            echo "Sitemap and SEO head tags are already up to date."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add sitemap.xml
-          git commit -m "chore: regenerate sitemap"
+          git add sitemap.xml '*.html'
+          git commit -m "chore: regenerate sitemap and SEO tags"
           git push origin HEAD:main
