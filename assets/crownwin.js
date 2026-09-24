@@ -1,3 +1,18 @@
+/* ===== GA4 measurement for cwpackingbox.com ===== */
+;(function(){
+  var measurementId='G-6QG5RYS7SK';
+  if(window.__crownwinGa4Initialized)return;
+  window.__crownwinGa4Initialized=true;
+  window.dataLayer=window.dataLayer||[];
+  window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
+  window.gtag('js',new Date());
+  window.gtag('config',measurementId);
+  var script=document.createElement('script');
+  script.async=true;
+  script.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(measurementId);
+  document.head.appendChild(script);
+})();
+
 const toggle=document.querySelector('.nav-toggle'), links=document.querySelector('#navLinks');
 const dropdowns=[...document.querySelectorAll('.dropdown-toggle')];
 function closeDropdowns(except){dropdowns.forEach(b=>{if(b!==except){b.setAttribute('aria-expanded','false');document.getElementById(b.getAttribute('aria-controls')).hidden=true}})}

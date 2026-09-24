@@ -3,6 +3,15 @@ import { join } from 'node:path';
 
 const siteRoot = process.cwd();
 const baseUrl = 'https://www.cwpackingbox.com';
+const gaMeasurementId = 'G-6QG5RYS7SK';
+const gaScript = `
+<script async src="https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '${gaMeasurementId}');
+</script>`;
 
 function pageUrl(fileName) {
   return fileName === 'index.html' ? `${baseUrl}/` : `${baseUrl}/${fileName}`;
@@ -21,6 +30,10 @@ for (const entry of readdirSync(siteRoot, { withFileTypes: true })) {
   const filePath = join(siteRoot, entry.name);
   const original = readFileSync(filePath, 'utf8');
   let html = original;
+
+  if (!new RegExp(`googletagmanager\\.com/gtag/js\\?id=${gaMeasurementId}`).test(html)) {
+    html = html.replace(/<head[^>]*>/i, (match) => `${match}${gaScript}`);
+  }
 
   if (entry.name === '404.html') {
     if (!/<meta\s+[^>]*name=["']robots["'][^>]*>/i.test(html)) {
