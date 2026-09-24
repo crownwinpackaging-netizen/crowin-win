@@ -3,7 +3,7 @@ import { join } from 'node:path';
 
 const siteRoot = process.cwd();
 const baseUrl = 'https://www.cwpackingbox.com';
-const gaMeasurementId = 'G-6QG5RYS7SK';
+const gaMeasurementId = 'G-78RG0ZFK7E';
 const gaScript = `
 <script async src="https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}"></script>
 <script>
