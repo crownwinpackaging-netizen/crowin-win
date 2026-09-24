@@ -1,6 +1,6 @@
 /* ===== GA4 measurement for cwpackingbox.com ===== */
 ;(function(){
-  var measurementId='G-78RG0ZFK7E';
+  var measurementId='G-6QG5RYS7SK';
   if(window.__crownwinGa4Initialized)return;
   window.__crownwinGa4Initialized=true;
   window.dataLayer=window.dataLayer||[];
