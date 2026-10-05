@@ -12,6 +12,10 @@
   script.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(measurementId);
   document.head.appendChild(script);
 })();
+if(location.pathname.endsWith('/thank-you.html')){
+ const submittedForm=new URLSearchParams(location.search).get('form_id');
+ if(submittedForm==='homepage_quote'||submittedForm==='quote_page')window.gtag('event','generate_lead',{form_id:submittedForm,method:'formsubmit'});
+}
 
 const toggle=document.querySelector('.nav-toggle'), links=document.querySelector('#navLinks');
 const dropdowns=[...document.querySelectorAll('.dropdown-toggle')];
@@ -35,31 +39,7 @@ document.querySelectorAll('.zoom-image').forEach(link=>link.addEventListener('cl
 const form=document.querySelector('#rfq');
 if(form){
  const p=new URLSearchParams(location.search).get('product');if(p)form.elements.namedItem('product').value=p.slice(0,300);
- function prepare(){if(!form.reportValidity())return null;const d=new FormData(form);const brief=`Hello Crown Win,\n\nI would like to discuss custom packaging.\n\nName: ${d.get('name')}\nWork email: ${d.get('email')}\nCompany: ${d.get('company')}\nDelivery country: ${d.get('country')}\nPackaging: ${d.get('product')}\nQuantity: ${d.get('quantity')}\nProduct dimensions: ${d.get('dimensions')}\nMatching paper bags: ${d.has('bags')?'Yes':'Not requested'}\nAssess foldable structure: ${d.has('foldable')?'Yes':'Not requested'}\n\nProject details:\n${d.get('details')}\n\nPlease advise suitable options and the next steps.`;document.querySelector('#draft').hidden=false;document.querySelector('#draft-text').value=brief;document.querySelector('#email-draft').href='mailto:kevinlu@box-label.com?subject='+encodeURIComponent('Packaging enquiry: '+d.get('product'))+'&body='+encodeURIComponent(brief);document.querySelector('#form-status').textContent='Draft prepared. Nothing has been sent.';return brief}
- async function submitQuote(){
-  const brief=prepare();
-  if(!brief)return;
-  const endpoint='https://formspree.io/f/xbglybqq';
-  const button=form.querySelector('button[type="submit"]');
-  const originalText=button?button.textContent:'';
-  const payload=new FormData(form);
-  payload.set('_subject','New Crown Win packaging enquiry');
-  payload.set('_replyto',String(payload.get('email')||''));
-  if(button){button.disabled=true;button.textContent='Sending...'}
-  try{
-   const response=await fetch(endpoint,{method:'POST',body:payload,headers:{Accept:'application/json'}});
-   if(!response.ok)throw new Error('HTTP '+response.status);
-   window.gtag&&window.gtag('event','generate_lead',{form_id:'rfq',method:'formspree'});
-   window.location.href='thank-you.html';
-   return;
-  }catch(error){
-   console.error('[crownwin quote-form]',error);
-   document.querySelector('#form-status').textContent='The enquiry could not be sent. Please use WhatsApp or the email link below.';
-  }finally{
-   if(button){button.disabled=false;button.textContent=originalText}
-  }
- }
- form.addEventListener('submit',e=>{e.preventDefault();submitQuote()});
+ function prepare(){if(!form.reportValidity())return null;const d=new FormData(form);const brief=`Hello Crown Win,\n\nI would like to discuss custom packaging.\n\nName: ${d.get('name')}\nWork email: ${d.get('email')}\nCompany: ${d.get('company')}\nDelivery country: ${d.get('country')}\nPackaging: ${d.get('product')}\nQuantity: ${d.get('quantity')}\nProduct dimensions: ${d.get('dimensions')}\nMatching paper bags: ${d.has('bags')?'Yes':'Not requested'}\nAssess foldable structure: ${d.has('foldable')?'Yes':'Not requested'}\n\nProject details:\n${d.get('details')}\n\nPlease advise suitable options and the next steps.`;document.querySelector('#draft').hidden=false;document.querySelector('#draft-text').value=brief;document.querySelector('#email-draft').href='mailto:kevinlu@box-label.com?subject='+encodeURIComponent('Packaging enquiry: '+d.get('product'))+'&body='+encodeURIComponent(brief);document.querySelector('#form-status').textContent='Brief ready. You can also copy it or send it directly using the form.';return brief}
  document.querySelector('#copy-brief').addEventListener('click',async()=>{const brief=prepare();if(!brief)return;try{await navigator.clipboard.writeText(brief);document.querySelector('#form-status').textContent='Brief copied. Paste it into an email to kevinlu@box-label.com.'}catch{const text=document.querySelector('#draft-text');text.focus();text.select();document.querySelector('#form-status').textContent='Your brief is selected below. Copy it into your email.'}});
 }
 /* ===== 首页报价表单 #quoteForm（2026-09-20，照 xinhua site.js）===== */
@@ -88,38 +68,9 @@ if(form){
    if(waHref){var a=document.createElement('a');a.href=waHref;a.target='_blank';a.rel='noopener';a.textContent=linkText;status.appendChild(a)}
   }
   form.addEventListener('submit',function(ev){
-   ev.preventDefault();
-   try{
-    var honey=form.querySelector('input[name="_honey"]');if(honey&&honey.value)return;
-    var firstBad=null;
-    form.querySelectorAll('[required]').forEach(function(f){if(!validate(f)&&!firstBad)firstBad=f});
-    if(firstBad){firstBad.focus();return}
-    var data=new FormData(form);
-    var endpoint=form.getAttribute('data-endpoint') || 'https://formspree.io/f/xbglybqq';
-    var lines=['Hi Crown Win, quote request from your website.'];
-    [['name','name'],['company','company'],['email','email'],['phone','phone'],['product_type','product type'],['quantity','quantity'],['message','message']].forEach(function(p){
-     var v=data.get(p[0]);if(v&&typeof v==='string')lines.push(p[1]+': '+v);
-    });
-    var hasFile=fileInput&&fileInput.files&&fileInput.files.length>0;
-    var waHref='https://wa.me/'+wa+'?text='+encodeURIComponent(lines.join('\n'));
-    if(!endpoint){
-     console.info(TAG,'no endpoint yet - WhatsApp fallback');
-     showStatus('Our online form is being connected. Your details are ready to send on WhatsApp.'+(hasFile?' Please attach your logo file in the chat.':''),waHref,'Send it on WhatsApp instead');
-     return;
-    }
-    var btn=form.querySelector('button[type="submit"]');var btnText=btn?btn.textContent:'';
-    if(btn){btn.disabled=true;btn.textContent='Sending...'}
-    fetch(endpoint,{method:'POST',body:data,headers:{Accept:'application/json'}})
-     .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r})
-     .then(function(){
-      var thanks=form.getAttribute('data-thanks') || 'thank-you.html';
-      if(thanks){location.href=thanks;return}
-      showStatus('Thank you, we received your details.');form.reset();
-      if(fileLabel)fileLabel.textContent='No file selected';if(drop)drop.classList.remove('has-file');
-     })
-     .catch(function(e){console.error(TAG,e);showStatus('Sorry, the form did not go through. Please try again, or',waHref,'send it on WhatsApp')})
-     .then(function(){if(btn){btn.disabled=false;btn.textContent=btnText}});
-   }catch(e){console.error(TAG,'submit failed',e)}
+   var file=fileInput&&fileInput.files&&fileInput.files[0];
+   if(file&&file.size>10*1024*1024){ev.preventDefault();showStatus('The selected file is over 10MB. Choose a smaller file before sending.', 'https://wa.me/'+wa, 'Contact us on WhatsApp');return}
+   var btn=form.querySelector('button[type="submit"]');if(btn){btn.disabled=true;btn.textContent='Sending...'}
   });
   console.info(TAG,'ready');
  }catch(e){console.error(TAG,'init failed',e)}
