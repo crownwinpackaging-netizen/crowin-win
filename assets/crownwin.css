@@ -487,3 +487,10 @@ body:not(.source-home) .product-quote-btn:hover{background:var(--gold);color:var
 
 /* 2026-09-22 行业模板内联网格文字卡片内边距 */
 div[style*="grid-template-columns"]>.card{padding:28px}div[style*="grid-template-columns"]>.card h3{margin-bottom:10px}div[style*="grid-template-columns"]>.card p{margin:0}@media(max-width:600px){div[style*="grid-template-columns"]>.card{padding:22px}}
+
+.footer-social{display:flex;justify-content:flex-end;gap:12px;max-width:1200px;margin:20px auto 24px}
+.footer-social-link{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(138,100,24,.32);border-radius:50%;color:#8A6418;transition:background-color .18s ease,color .18s ease,border-color .18s ease,transform .18s ease}
+.footer-social-link:hover{background:#8A6418;border-color:#8A6418;color:#fff;transform:translateY(-2px)}
+.footer-social-link:focus-visible{outline:2px solid #8A6418;outline-offset:3px}
+.footer-social-icon{display:block;width:20px;height:20px}
+@media(max-width:768px){.footer-social{justify-content:flex-start;margin:18px 0 22px}}
