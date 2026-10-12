@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="280" viewBox="0 0 1060 280" role="img" aria-labelledby="title desc">
+<title id="title">Four checks for a custom box insert</title>
+<desc id="desc">Measure the packed set, review a physical sample, check fit and access, then evaluate the filled box inside its shipping carton.</desc>
+<defs><linearGradient id="bg" x1="0" x2="1"><stop stop-color="#121218"/><stop offset="1" stop-color="#191820"/></linearGradient></defs>
+<rect width="1060" height="280" rx="20" fill="url(#bg)"/>
+<text x="42" y="47" fill="#c9a84c" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2">THE INSERT APPROVAL LOOP</text>
+<g font-family="Arial,sans-serif">
+<g transform="translate(38 78)"><rect width="220" height="154" rx="14" fill="#202027" stroke="#51462a"/><circle cx="28" cy="30" r="15" fill="#c9a84c"/><text x="28" y="35" text-anchor="middle" fill="#111" font-size="13" font-weight="700">1</text><text x="24" y="77" fill="#fff" font-size="18" font-weight="700">Measure the set</text><text x="24" y="106" fill="#c8c6cc" font-size="13">Packed dimensions, weight</text><text x="24" y="127" fill="#c8c6cc" font-size="13">and preferred layout</text></g>
+<path d="M270 155h24m-8-8 8 8-8 8" fill="none" stroke="#c9a84c" stroke-width="2"/>
+<g transform="translate(302 78)"><rect width="220" height="154" rx="14" fill="#202027" stroke="#51462a"/><circle cx="28" cy="30" r="15" fill="#c9a84c"/><text x="28" y="35" text-anchor="middle" fill="#111" font-size="13" font-weight="700">2</text><text x="24" y="77" fill="#fff" font-size="18" font-weight="700">Review a sample</text><text x="24" y="106" fill="#c8c6cc" font-size="13">Use the real products</text><text x="24" y="127" fill="#c8c6cc" font-size="13">in the intended box</text></g>
+<path d="M534 155h24m-8-8 8 8-8 8" fill="none" stroke="#c9a84c" stroke-width="2"/>
+<g transform="translate(566 78)"><rect width="220" height="154" rx="14" fill="#202027" stroke="#51462a"/><circle cx="28" cy="30" r="15" fill="#c9a84c"/><text x="28" y="35" text-anchor="middle" fill="#111" font-size="13" font-weight="700">3</text><text x="24" y="77" fill="#fff" font-size="18" font-weight="700">Check fit &amp; access</text><text x="24" y="106" fill="#c8c6cc" font-size="13">Movement, removal</text><text x="24" y="127" fill="#c8c6cc" font-size="13">and repeatable packing</text></g>
+<path d="M798 155h24m-8-8 8 8-8 8" fill="none" stroke="#c9a84c" stroke-width="2"/>
+<g transform="translate(830 78)"><rect width="192" height="154" rx="14" fill="#202027" stroke="#51462a"/><circle cx="28" cy="30" r="15" fill="#c9a84c"/><text x="28" y="35" text-anchor="middle" fill="#111" font-size="13" font-weight="700">4</text><text x="24" y="77" fill="#fff" font-size="17" font-weight="700">Check the shipper</text><text x="24" y="106" fill="#c8c6cc" font-size="13">Filled box plus</text><text x="24" y="127" fill="#c8c6cc" font-size="13">outer carton</text></g>
+</g>
+</svg>
