@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">A practical system for consistent packaging</title>
+  <desc id="desc">Three connected steps: keep core brand rules consistent, adapt the layout to each packaging format and product variant, and record material-specific colors and production versions.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#171717"/><stop offset="1" stop-color="#29251d"/></linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#b88b3e"/><stop offset="1" stop-color="#e4c47a"/></linearGradient>
+    <style>
+      .eyebrow{font:700 15px Arial,sans-serif;letter-spacing:2.8px;fill:#d6b56c}.heading{font:700 31px Arial,sans-serif;fill:#fff}.body{font:16px Arial,sans-serif;fill:#d4d0c7}.small{font:700 12px Arial,sans-serif;letter-spacing:1.5px;fill:#a9a397}.card-title{font:700 20px Arial,sans-serif;fill:#fff}.item{font:15px Arial,sans-serif;fill:#dedbd3}.brand{font:700 12px Arial,sans-serif;letter-spacing:1.4px;fill:#fff}.packlabel{font:700 9px Arial,sans-serif;letter-spacing:.7px;fill:#34312b}
+    </style>
+  </defs>
+  <rect width="1200" height="650" rx="24" fill="url(#bg)"/>
+  <text x="58" y="58" class="eyebrow">A SIMPLE BRAND SYSTEM</text>
+  <text x="58" y="101" class="heading">Keep the identity. Adapt the package.</text>
+  <text x="58" y="132" class="body">One shared design foundation, translated for each product and material.</text>
+
+  <g transform="translate(58 170)">
+    <rect width="330" height="315" rx="18" fill="#242424" stroke="#514a3a"/>
+    <circle cx="34" cy="39" r="17" fill="url(#gold)"/><text x="34" y="45" text-anchor="middle" font="700 14px Arial" fill="#171717">01</text>
+    <text x="62" y="45" class="card-title">FIX</text>
+    <text x="28" y="88" class="small">CORE BRAND RULES</text>
+    <text x="28" y="126" class="item">Logo position and clear space</text>
+    <text x="28" y="158" class="item">Type styles and text hierarchy</text>
+    <text x="28" y="190" class="item">Color roles and layout rhythm</text>
+    <rect x="28" y="222" width="274" height="67" rx="9" fill="#33312c"/>
+    <rect x="44" y="238" width="35" height="35" rx="5" fill="#d5b36a"/>
+    <text x="95" y="250" class="brand">YOUR BRAND</text><text x="95" y="268" class="small">RECOGNIZABLE ANCHORS</text>
+  </g>
+
+  <path d="M401 326h22m-8-8 8 8-8 8" fill="none" stroke="#d6b56c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g transform="translate(435 170)">
+    <rect width="330" height="315" rx="18" fill="#242424" stroke="#514a3a"/>
+    <circle cx="34" cy="39" r="17" fill="url(#gold)"/><text x="34" y="45" text-anchor="middle" font="700 14px Arial" fill="#171717">02</text>
+    <text x="62" y="45" class="card-title">ADAPT</text>
+    <text x="28" y="88" class="small">FORMAT AND SKU</text>
+    <text x="28" y="126" class="item">Fit panels, folds and opening cues</text>
+    <text x="28" y="158" class="item">Product name, size and variant</text>
+    <text x="28" y="190" class="item">Accent color or illustration</text>
+    <g transform="translate(38 222)">
+      <rect width="72" height="66" rx="4" fill="#ebe4d2"/><path d="M0 15h72" stroke="#c6b37f" stroke-width="3"/><text x="36" y="39" text-anchor="middle" class="packlabel">YOUR BRAND</text><text x="36" y="55" text-anchor="middle" font="10px Arial" fill="#5c574c">SERUM</text>
+      <rect x="91" width="72" height="66" rx="4" fill="#d7e0d2"/><path d="M91 15h72" stroke="#769074" stroke-width="3"/><text x="127" y="39" text-anchor="middle" class="packlabel">YOUR BRAND</text><text x="127" y="55" text-anchor="middle" font="10px Arial" fill="#5c574c">MIST</text>
+      <rect x="182" width="72" height="66" rx="4" fill="#ead4d2"/><path d="M182 15h72" stroke="#bd817b" stroke-width="3"/><text x="218" y="39" text-anchor="middle" class="packlabel">YOUR BRAND</text><text x="218" y="55" text-anchor="middle" font="10px Arial" fill="#5c574c">CREAM</text>
+    </g>
+  </g>
+
+  <path d="M778 326h22m-8-8 8 8-8 8" fill="none" stroke="#d6b56c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <g transform="translate(812 170)">
+    <rect width="330" height="315" rx="18" fill="#242424" stroke="#514a3a"/>
+    <circle cx="34" cy="39" r="17" fill="url(#gold)"/><text x="34" y="45" text-anchor="middle" font="700 14px Arial" fill="#171717">03</text>
+    <text x="62" y="45" class="card-title">RECORD</text>
+    <text x="28" y="88" class="small">PRODUCTION REFERENCES</text>
+    <text x="28" y="126" class="item">Dieline and version number</text>
+    <text x="28" y="158" class="item">Board, coating and print method</text>
+    <text x="28" y="190" class="item">Color target and approved proof</text>
+    <rect x="28" y="222" width="274" height="67" rx="9" fill="#33312c"/>
+    <path d="M47 246h22m-22 10h40m-40 10h31" stroke="#d6b56c" stroke-width="3" stroke-linecap="round"/>
+    <text x="105" y="250" class="brand">MASTER FILE</text><text x="105" y="270" class="small">ONE CURRENT REFERENCE</text>
+  </g>
+
+  <rect x="58" y="520" width="1084" height="1" fill="#514a3a"/>
+  <text x="58" y="557" class="eyebrow">THE CHECK</text>
+  <text x="58" y="592" class="body">Same brand cues at a glance. Clear product differences. Color and artwork checked on the intended stock.</text>
+  <text x="1142" y="615" text-anchor="end" class="small">CONCEPT DIAGRAM · NOT A CUSTOMER DESIGN</text>
+</svg>

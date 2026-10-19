@@ -1,4 +1,4 @@
-import { readdirSync, writeFileSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const siteRoot = process.cwd();
@@ -9,6 +9,7 @@ const pages = readdirSync(siteRoot, { withFileTypes: true })
   .filter((entry) => entry.isFile() && entry.name.endsWith('.html'))
   .map((entry) => entry.name)
   .filter((name) => !excludedPages.has(name))
+  .filter((name) => !/\bnoindex\b/i.test(readFileSync(join(siteRoot, name), 'utf8').match(/<meta\b[^>]*\bname=["']robots["'][^>]*>/i)?.[0] ?? ''))
   .sort((a, b) => a.localeCompare(b));
 
 const urls = [
