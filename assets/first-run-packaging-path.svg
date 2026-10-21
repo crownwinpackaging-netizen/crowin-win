@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="720" viewBox="0 0 1440 720" role="img" aria-labelledby="title desc">
+  <title id="title">A practical path for choosing packaging for a first run</title>
+  <desc id="desc">Start by validating fit and delivery, then choose between stock packaging with simple branding, a sample-led custom run, or a larger custom run after demand is clearer.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#161619"/><stop offset="1" stop-color="#0a0a0f"/></linearGradient>
+    <linearGradient id="gold" x2="1"><stop stop-color="#c9a84c"/><stop offset="1" stop-color="#f0d98c"/></linearGradient>
+    <style>
+      text{font-family:Arial,sans-serif}.title{fill:#f5f2e8;font-size:34px;font-weight:700}.subtitle{fill:#b9b7b0;font-size:19px}.step{fill:#f0d98c;font-size:17px;font-weight:700;letter-spacing:1px}.head{fill:#fff;font-size:25px;font-weight:700}.body{fill:#c6c4bd;font-size:18px}.small{fill:#aaa89f;font-size:15px}.num{fill:#0a0a0f;font-size:21px;font-weight:700}
+    </style>
+  </defs>
+  <rect width="1440" height="720" rx="28" fill="url(#bg)"/>
+  <text x="72" y="82" class="step">FIRST-RUN DECISION GUIDE</text>
+  <text x="72" y="132" class="title">Match the packaging commitment to what you need to learn</text>
+  <text x="72" y="170" class="subtitle">A buyer framework based on recurring questions in public packaging discussions — not a universal production rule.</text>
+  <path d="M185 266H1255" stroke="#6f633f" stroke-width="3" stroke-dasharray="8 10"/>
+  <g transform="translate(75 220)"><circle cx="110" cy="46" r="31" fill="url(#gold)"/><text x="103" y="54" class="num">1</text><rect x="0" y="96" width="350" height="300" rx="18" fill="#202024" stroke="#6b5a2c"/><text x="28" y="145" class="step">VALIDATE</text><text x="28" y="190" class="head">Product + delivery</text><text x="28" y="235" class="body"><tspan x="28">Measure the filled product.</tspan><tspan x="28" dy="31">Check fit, protection, pack-out</tspan><tspan x="28" dy="31">and a real transit test.</tspan></text><text x="28" y="360" class="small">Learn what the box must do.</text></g>
+  <g transform="translate(545 220)"><circle cx="110" cy="46" r="31" fill="url(#gold)"/><text x="103" y="54" class="num">2</text><rect x="0" y="96" width="350" height="300" rx="18" fill="#202024" stroke="#6b5a2c"/><text x="28" y="145" class="step">TEST SMALLER</text><text x="28" y="190" class="head">Stock + light branding</text><text x="28" y="235" class="body"><tspan x="28">Use an available box with a</tspan><tspan x="28" dy="31">sticker, stamp, tape or insert</tspan><tspan x="28" dy="31">while demand is uncertain.</tspan></text><text x="28" y="360" class="small">Trade full customization for flexibility.</text></g>
+  <g transform="translate(1015 220)"><circle cx="110" cy="46" r="31" fill="url(#gold)"/><text x="103" y="54" class="num">3</text><rect x="0" y="96" width="350" height="300" rx="18" fill="#202024" stroke="#6b5a2c"/><text x="28" y="145" class="step">CUSTOMIZE</text><text x="28" y="190" class="head">Sample, then specify</text><text x="28" y="235" class="body"><tspan x="28">Confirm MOQ, full landed cost,</tspan><tspan x="28" dy="31">sample scope, storage needs</tspan><tspan x="28" dy="31">and reorder terms in writing.</tspan></text><text x="28" y="360" class="small">Scale when the details and demand fit.</text></g>
+  <text x="72" y="674" class="small">The best first order is the one that tests the right assumptions at an inventory level you can manage.</text>
+</svg>
