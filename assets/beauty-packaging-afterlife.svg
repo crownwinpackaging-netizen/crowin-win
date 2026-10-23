@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="720" viewBox="0 0 1440 720" role="img" aria-labelledby="title desc">
+  <title id="title">Design packaging for what happens after unboxing</title>
+  <desc id="desc">A three-step packaging design guide: keep what is useful, separate components that come apart, and provide local disposal guidance for the rest.</desc>
+  <rect width="1440" height="720" rx="28" fill="#f5f1e9"/>
+  <text x="88" y="94" fill="#18211c" font-family="Arial,sans-serif" font-size="22" font-weight="700" letter-spacing="4">AFTER THE UNBOXING</text>
+  <text x="88" y="148" fill="#18211c" font-family="Arial,sans-serif" font-size="38" font-weight="700">Design for the next action, not just the first impression.</text>
+  <g font-family="Arial,sans-serif">
+    <rect x="80" y="205" width="400" height="420" rx="18" fill="#fffdfa"/>
+    <rect x="520" y="205" width="400" height="420" rx="18" fill="#fffdfa"/>
+    <rect x="960" y="205" width="400" height="420" rx="18" fill="#fffdfa"/>
+    <circle cx="142" cy="270" r="35" fill="#dce6d9"/><text x="130" y="281" fill="#345340" font-size="30" font-weight="700">1</text>
+    <text x="195" y="278" fill="#18211c" font-size="27" font-weight="700">KEEP WHAT EARNS A PLACE</text>
+    <path d="M182 365h190l-18 132H200z" fill="#9daf94"/><path d="M207 365v-35h140v35" fill="none" stroke="#526b55" stroke-width="12"/><rect x="225" y="397" width="100" height="65" rx="8" fill="#eee4d3"/><circle cx="275" cy="429" r="18" fill="#c58d71"/>
+    <text x="120" y="544" fill="#525b53" font-size="19">Useful, sturdy, and easy to store</text>
+    <text x="120" y="576" fill="#525b53" font-size="19">is more reusable than merely ornate.</text>
+    <circle cx="582" cy="270" r="35" fill="#eadfd1"/><text x="570" y="281" fill="#7b5948" font-size="30" font-weight="700">2</text>
+    <text x="635" y="278" fill="#18211c" font-size="27" font-weight="700">MAKE PARTS COME APART</text>
+    <rect x="641" y="360" width="160" height="112" rx="8" fill="#eee4d3" stroke="#947d67" stroke-width="4"/><path d="M660 384h120M660 410h120M660 436h120" stroke="#c3b59f" stroke-width="5"/><path d="M620 402h-30m0 0 12-12m-12 12 12 12M820 402h30m0 0-12-12m12 12-12 12" fill="none" stroke="#a07157" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="560" y="544" fill="#525b53" font-size="19">Removable trays and clear material</text>
+    <text x="560" y="576" fill="#525b53" font-size="19">boundaries make sorting simpler.</text>
+    <circle cx="1022" cy="270" r="35" fill="#dce5e2"/><text x="1010" y="281" fill="#45635e" font-size="30" font-weight="700">3</text>
+    <text x="1075" y="278" fill="#18211c" font-size="27" font-weight="700">GUIDE THE LAST STEP</text>
+    <rect x="1090" y="344" width="150" height="156" rx="14" fill="#f3eee4" stroke="#899b88" stroke-width="5"/><path d="M1118 382h94M1118 414h94M1118 446h68" stroke="#899b88" stroke-width="7" stroke-linecap="round"/><path d="M1265 404l18 18 36-42" fill="none" stroke="#67836b" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="1000" y="544" fill="#525b53" font-size="19">Give concise, local guidance; avoid</text>
+    <text x="1000" y="576" fill="#525b53" font-size="19">a universal recycling promise.</text>
+  </g>
+  <text x="88" y="676" fill="#687269" font-family="Arial,sans-serif" font-size="16">A design checklist inspired by public buyer and consumer discussions; not a recycling certification.</text>
+</svg>
+
