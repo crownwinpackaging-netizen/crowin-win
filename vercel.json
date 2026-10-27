@@ -1,11 +1,1 @@
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "headers": [
-    {
-      "source": "/one-piece-folding-gift-boxes.html",
-      "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
-      ]
-    }
-  ]
-}
+{"$schema":"https://openapi.vercel.sh/vercel.json","headers":[{"source":"/one-piece-folding-gift-boxes.html","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow"}]},{"source":"/one-piece-folding-gift-boxes-ar.html","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow"}]}]}
