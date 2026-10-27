@@ -25,7 +25,8 @@ if(location.pathname.endsWith('/thank-you.html')){
 const toggle=document.querySelector('.nav-toggle'), links=document.querySelector('#navLinks');
 const dropdowns=[...document.querySelectorAll('.dropdown-toggle')];
 function closeDropdowns(except){dropdowns.forEach(b=>{if(b!==except){b.setAttribute('aria-expanded','false');document.getElementById(b.getAttribute('aria-controls')).hidden=true}})}
-toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));links.classList.toggle('open',open);if(!open)closeDropdowns()});
+if(toggle&&links&&!toggle.hasAttribute('onclick')){toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));links.classList.toggle('open',open);if(!open)closeDropdowns()})}
+if(toggle&&links){links.querySelectorAll('a[href]').forEach(link=>link.addEventListener('click',()=>{toggle.setAttribute('aria-expanded','false');links.classList.remove('open');links.style.removeProperty('display')}))}
 dropdowns.forEach(b=>b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')!=='true';closeDropdowns(b);b.setAttribute('aria-expanded',String(open));document.getElementById(b.getAttribute('aria-controls')).hidden=!open}));
 document.addEventListener('click',e=>{if(!e.target.closest('.nav-dropdown'))closeDropdowns()});
 document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;const open=dropdowns.find(b=>b.getAttribute('aria-expanded')==='true');if(open){closeDropdowns();open.focus()}else if(toggle.getAttribute('aria-expanded')==='true'){toggle.setAttribute('aria-expanded','false');links.classList.remove('open');toggle.focus()}});
