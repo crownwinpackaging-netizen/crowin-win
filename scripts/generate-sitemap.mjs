@@ -1,7 +1,10 @@
 import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
+import { syncCollections } from './sync-collections.mjs';
+
 const siteRoot = process.cwd();
+syncCollections(siteRoot);
 const baseUrl = 'https://www.cwpackingbox.com';
 const excludedPages = new Set(['404.html', 'index.html', 'thank-you.html']);
 
