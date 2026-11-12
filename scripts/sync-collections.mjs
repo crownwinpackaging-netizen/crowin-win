@@ -8,6 +8,7 @@ const categoryPages = [
   'beauty.html', 'fragrance.html', 'candles.html',
 ];
 
+const minimumOrder = '500 pcs';
 const cardPattern = /<article\b[^>]*\bclass="product-card"[^>]*>[\s\S]*?<\/article>/g;
 const metaPattern = /(<div class="product-meta">)([\s\S]*?)(<\/div>\s*(?=<a\b[^>]*class="product-quote-btn"))/;
 const productHref = card => card.match(/<a\b[^>]*\bclass="product-img"[^>]*\bhref="(product-[a-z0-9-]+\.html)"/)?.[1];
@@ -15,7 +16,7 @@ const productHref = card => card.match(/<a\b[^>]*\bclass="product-img"[^>]*\bhre
 function fillCardDetails(card) {
   if (!productHref(card)) return card;
   const feature = card.match(/<span class="product-tag">([^<]+)<\/span>/)?.[1]?.trim() || 'Custom packaging';
-  const values = { MOQ: 'By specification', 'Lead time': 'Confirm with quote', Feature: feature };
+  const values = { MOQ: minimumOrder, 'Lead time': 'Confirm with quote', Feature: feature };
   const meta = card.match(metaPattern);
   const missing = Object.entries(values)
     .filter(([label]) => !meta?.[2].includes(`class="meta-key">${label}</span>`))
@@ -31,7 +32,7 @@ function fillCardDetails(card) {
 }
 
 const detailFields = [
-  ['MOQ', 'By specification'],
+  ['MOQ', minimumOrder],
   ['Customization', 'Size, artwork and finish'],
   ['Sampling', 'Available on request'],
   ['Sample lead time', 'Confirm with quote'],
@@ -86,6 +87,17 @@ export function syncCollections(siteRoot) {
     const cta = '<div class="pdp-hero-cta">';
     if (!product.includes(cta)) throw new Error(`Product inquiry section is missing in ${page}.`);
     updates.set(productPath, product.replace(cta, detailBlock + cta));
+  }
+
+  for (const page of readdirSync(siteRoot).filter(name => name.endsWith('.html'))) {
+    const file = join(siteRoot, page);
+    const html = updates.get(file) ?? readFileSync(file, 'utf8');
+    const normalized = html
+      .replace(/(<span class="meta-key">MOQ<\/span>\s*<span class="meta-val">)[^<]*(<\/span>)/g,
+        (_, open, close) => open + minimumOrder + close)
+      .replace(/(<dt>MOQ<\/dt>\s*<dd>)[^<]*(<\/dd>)/g,
+        (_, open, close) => open + minimumOrder + close);
+    if (normalized !== html) updates.set(file, normalized);
   }
 
   for (const [file, content] of updates) writeFileSync(file, content, 'utf8');
