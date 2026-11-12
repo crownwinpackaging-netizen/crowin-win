@@ -9,6 +9,7 @@ const categoryPages = [
 ];
 
 const minimumOrder = '500 pcs';
+const sampleLeadTime = '15 days';
 const cardPattern = /<article\b[^>]*\bclass="product-card"[^>]*>[\s\S]*?<\/article>/g;
 const metaPattern = /(<div class="product-meta">)([\s\S]*?)(<\/div>\s*(?=<a\b[^>]*class="product-quote-btn"))/;
 const productHref = card => card.match(/<a\b[^>]*\bclass="product-img"[^>]*\bhref="(product-[a-z0-9-]+\.html)"/)?.[1];
@@ -35,7 +36,7 @@ const detailFields = [
   ['MOQ', minimumOrder],
   ['Customization', 'Size, artwork and finish'],
   ['Sampling', 'Available on request'],
-  ['Sample lead time', 'Confirm with quote'],
+  ['Sample lead time', sampleLeadTime],
 ];
 const detailBlock = '<dl class="pdp-order-details">' + detailFields
   .map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`)
@@ -83,7 +84,12 @@ export function syncCollections(siteRoot) {
   for (const page of readdirSync(siteRoot).filter(name => /^product-[a-z0-9-]+\.html$/.test(name))) {
     const productPath = join(siteRoot, page);
     const product = readFileSync(productPath, 'utf8');
-    if (product.includes('class="pdp-order-details"')) continue;
+    if (product.includes('class="pdp-order-details"')) {
+      const updated = product.replace(/(<dt>Sample lead time<\/dt>\s*<dd>)[^<]*(<\/dd>)/g,
+        (_, open, close) => open + sampleLeadTime + close);
+      if (updated !== product) updates.set(productPath, updated);
+      continue;
+    }
     const cta = '<div class="pdp-hero-cta">';
     if (!product.includes(cta)) throw new Error(`Product inquiry section is missing in ${page}.`);
     updates.set(productPath, product.replace(cta, detailBlock + cta));
