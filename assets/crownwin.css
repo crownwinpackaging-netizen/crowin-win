@@ -495,3 +495,8 @@ div[style*="grid-template-columns"]>.card{padding:28px}div[style*="grid-template
 .footer-social-link:focus-visible{outline:2px solid #8A6418;outline-offset:3px}
 .footer-social-icon{display:block;width:20px;height:20px}
 @media(max-width:768px){.footer-social{justify-content:flex-start;margin:18px 0 22px}}
+
+/* Product order and sample information */
+.pdp-order-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 20px;margin:0 0 22px;text-align:left}
+.pdp-order-details dt{font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--gray)}
+.pdp-order-details dd{margin:0;color:var(--white);font-size:13px;font-weight:600}
