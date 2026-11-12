@@ -10,6 +10,7 @@ const categoryPages = [
 
 const minimumOrder = '500 pcs';
 const sampleLeadTime = '15 days';
+const cardLeadTime = '15 days';
 const cardPattern = /<article\b[^>]*\bclass="product-card"[^>]*>[\s\S]*?<\/article>/g;
 const metaPattern = /(<div class="product-meta">)([\s\S]*?)(<\/div>\s*(?=<a\b[^>]*class="product-quote-btn"))/;
 const productHref = card => card.match(/<a\b[^>]*\bclass="product-img"[^>]*\bhref="(product-[a-z0-9-]+\.html)"/)?.[1];
@@ -17,7 +18,7 @@ const productHref = card => card.match(/<a\b[^>]*\bclass="product-img"[^>]*\bhre
 function fillCardDetails(card) {
   if (!productHref(card)) return card;
   const feature = card.match(/<span class="product-tag">([^<]+)<\/span>/)?.[1]?.trim() || 'Custom packaging';
-  const values = { MOQ: minimumOrder, 'Lead time': 'Confirm with quote', Feature: feature };
+  const values = { MOQ: minimumOrder, 'Lead time': cardLeadTime, Feature: feature };
   const meta = card.match(metaPattern);
   const missing = Object.entries(values)
     .filter(([label]) => !meta?.[2].includes(`class="meta-key">${label}</span>`))
@@ -101,6 +102,8 @@ export function syncCollections(siteRoot) {
     const normalized = html
       .replace(/(<span class="meta-key">MOQ<\/span>\s*<span class="meta-val">)[^<]*(<\/span>)/g,
         (_, open, close) => open + minimumOrder + close)
+      .replace(/(<span class="meta-key">Lead time<\/span>\s*<span class="meta-val">)[^<]*(<\/span>)/g,
+        (_, open, close) => open + cardLeadTime + close)
       .replace(/(<dt>MOQ<\/dt>\s*<dd>)[^<]*(<\/dd>)/g,
         (_, open, close) => open + minimumOrder + close);
     if (normalized !== html) updates.set(file, normalized);
