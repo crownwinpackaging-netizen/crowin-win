@@ -30,7 +30,65 @@ if(toggle&&links){links.querySelectorAll('a[href]').forEach(link=>link.addEventL
 dropdowns.forEach(b=>b.addEventListener('click',()=>{const open=b.getAttribute('aria-expanded')!=='true';closeDropdowns(b);b.setAttribute('aria-expanded',String(open));document.getElementById(b.getAttribute('aria-controls')).hidden=!open}));
 document.addEventListener('click',e=>{if(!e.target.closest('.nav-dropdown'))closeDropdowns()});
 document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;const open=dropdowns.find(b=>b.getAttribute('aria-expanded')==='true');if(open){closeDropdowns();open.focus()}else if(toggle.getAttribute('aria-expanded')==='true'){toggle.setAttribute('aria-expanded','false');links.classList.remove('open');toggle.focus()}});
-document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{let count=0;document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('active',b===button);b.setAttribute('aria-pressed',String(b===button))});document.querySelectorAll('[data-category]').forEach(card=>{card.hidden=button.dataset.filter!=='all'&&card.dataset.category!==button.dataset.filter;if(!card.hidden)count++});document.querySelector('#filter-count').textContent=`${count} packaging example${count===1?'':'s'}`}));
+const catalogPagination = document.querySelector('.catalog-pagination');
+if (catalogPagination) {
+  const status = document.querySelector('#filter-count');
+  const filters = [...document.querySelectorAll('.filter-bar [data-filter]')];
+  const cards = [...document.querySelectorAll('.products-grid .product-card')];
+  const pageSelect = catalogPagination.querySelector('select');
+  const previous = catalogPagination.querySelector('[data-catalog-step="-1"]');
+  const next = catalogPagination.querySelector('[data-catalog-step="1"]');
+  const mobile = matchMedia('(max-width: 600px)');
+  let pageSize = mobile.matches ? 6 : 12;
+  let currentPage = 1;
+  let activeFilter = 'all';
+
+  function renderCatalog() {
+    const matching = cards.filter(card => activeFilter === 'all' || card.dataset.category === activeFilter);
+    const pageCount = Math.max(1, Math.ceil(matching.length / pageSize));
+    currentPage = Math.min(currentPage, pageCount);
+    const start = (currentPage - 1) * pageSize;
+    const visible = new Set(matching.slice(start, start + pageSize));
+    cards.forEach(card => { card.hidden = !visible.has(card); });
+    const total = matching.length;
+    status.textContent = total ? `Showing ${start + 1}–${start + visible.size} of ${total} packaging examples` : 'No packaging examples';
+    catalogPagination.hidden = pageCount < 2;
+    previous.disabled = currentPage === 1;
+    next.disabled = currentPage === pageCount;
+    if (pageSelect.options.length !== pageCount) {
+      pageSelect.replaceChildren(...Array.from({ length: pageCount }, (_, index) =>
+        new Option(`${index + 1} of ${pageCount}`, String(index + 1))));
+    }
+    pageSelect.value = String(currentPage);
+  }
+
+  function goToPage(page) {
+    currentPage = page;
+    renderCatalog();
+    status.focus({ preventScroll: true });
+    status.scrollIntoView({ block: 'start' });
+  }
+
+  filters.forEach(button => button.addEventListener('click', () => {
+    activeFilter = button.dataset.filter;
+    filters.forEach(filter => {
+      filter.classList.toggle('active', filter === button);
+      filter.setAttribute('aria-pressed', String(filter === button));
+    });
+    currentPage = 1;
+    renderCatalog();
+  }));
+  previous.addEventListener('click', () => goToPage(currentPage - 1));
+  next.addEventListener('click', () => goToPage(currentPage + 1));
+  pageSelect.addEventListener('change', () => goToPage(Number(pageSelect.value)));
+  mobile.addEventListener('change', () => {
+    const firstVisible = (currentPage - 1) * pageSize;
+    pageSize = mobile.matches ? 6 : 12;
+    currentPage = Math.floor(firstVisible / pageSize) + 1;
+    renderCatalog();
+  });
+  renderCatalog();
+}
 const back=document.querySelector('.back-top');window.addEventListener('scroll',()=>{back.hidden=window.scrollY<600},{passive:true});back.addEventListener('click',()=>{window.scrollTo({top:0,behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});document.querySelector('.logo').focus()});
 document.querySelectorAll('#quoteForm, #rfq').forEach(function(form){
  const formId=form.id==='quoteForm'?'homepage_quote':'quote_page';
