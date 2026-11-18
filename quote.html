@@ -31,7 +31,7 @@
 <script>
   (() => {
     const params = new URLSearchParams(window.location.search);
-    const sources = { foldable: 'foldable_boxes', beauty: 'beauty_packaging', magnetic: 'magnetic_gift_boxes' };
+    const sources = { foldable: 'foldable_boxes', beauty: 'beauty_packaging', magnetic: 'magnetic_gift_boxes', fragrance: 'fragrance_packaging', product: 'product_detail' };
     const from = params.get('from');
     if (!Object.hasOwn(sources, from) || !params.get('product')) return;
 
