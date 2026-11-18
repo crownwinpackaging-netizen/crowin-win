@@ -23,6 +23,15 @@ if(location.pathname.endsWith('/thank-you.html')){
 }
 
 const toggle=document.querySelector('.nav-toggle'), links=document.querySelector('#navLinks');
+// Surface the FAQ beside Blog on pages using the shared navigation.
+if (links) {
+  const faq = links.querySelector('.dropdown-menu a[href="support.html"]');
+  const blog = links.querySelector(':scope > li > a[href="blog.html"]');
+  if (faq && blog && !links.querySelector(':scope > li > a[href="support.html"]')) {
+    faq.textContent = 'FAQ';
+    blog.parentElement.after(faq.parentElement);
+  }
+}
 const dropdowns=[...document.querySelectorAll('.dropdown-toggle')];
 function closeDropdowns(except){dropdowns.forEach(b=>{if(b!==except){b.setAttribute('aria-expanded','false');document.getElementById(b.getAttribute('aria-controls')).hidden=true}})}
 if(toggle&&links&&!toggle.hasAttribute('onclick')){toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));links.classList.toggle('open',open);if(!open)closeDropdowns()})}
