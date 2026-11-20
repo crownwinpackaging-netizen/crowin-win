@@ -65,6 +65,24 @@ if (!document.querySelector('a.floating-wa, a.cw-floating-whatsapp')) {
   document.body.append(whatsapp);
 }
 
+// Include the page address in the floating WhatsApp enquiry.
+{
+  const page = new URL(location.pathname, location.origin);
+  for (const link of document.querySelectorAll('a.floating-wa, a.cw-floating-whatsapp')) {
+    const chat = new URL(link.href);
+    if (chat.hostname !== 'wa.me') continue;
+
+    const message = chat.searchParams.get('text') ||
+      'Hi Crown Win, could you send me a quote for custom packaging?';
+    const pageLine = 'Page: ' + page.href;
+    const pageLinePattern = /^Page: https?:\/\/[^\r\n]+/m;
+    chat.searchParams.set('text', pageLinePattern.test(message)
+      ? message.replace(pageLinePattern, () => pageLine)
+      : message.trimEnd() + '\n\n' + pageLine);
+    link.href = chat.href;
+  }
+}
+
 const toggle=document.querySelector('.nav-toggle'), links=document.querySelector('#navLinks');
 // Surface the FAQ beside Blog on pages using the shared navigation.
 if (links) {
