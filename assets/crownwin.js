@@ -22,6 +22,49 @@ if(location.pathname.endsWith('/thank-you.html')){
  }catch(e){}
 }
 
+// Use the landing page's WhatsApp button on pages without a dedicated floating link.
+if (!document.querySelector('a.floating-wa, a.cw-floating-whatsapp')) {
+  const whatsapp = document.createElement('a');
+  whatsapp.className = 'cw-floating-whatsapp';
+  whatsapp.href = 'https://wa.me/85270251822';
+  whatsapp.target = '_blank';
+  whatsapp.rel = 'noopener noreferrer';
+  whatsapp.setAttribute('aria-label', 'Chat with Crown Win on WhatsApp');
+  whatsapp.innerHTML = '<svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M16.02 3a12.8 12.8 0 0 0-10.9 19.5L3.4 29l6.66-1.69A12.9 12.9 0 1 0 16.02 3Zm0 23.5c-1.92 0-3.8-.51-5.45-1.49l-.39-.23-3.96 1 .99-3.86-.25-.4a10.55 10.55 0 1 1 9.06 4.98Zm5.79-7.9c-.32-.16-1.9-.94-2.2-1.05-.3-.11-.52-.16-.74.16-.22.33-.85 1.05-1.04 1.27-.19.22-.38.24-.7.08-.33-.17-1.38-.51-2.62-1.62-.97-.86-1.63-1.93-1.82-2.26-.19-.33-.02-.5.14-.66.15-.14.33-.38.49-.57.16-.19.22-.33.33-.55.11-.22.05-.41-.03-.57-.08-.16-.74-1.79-1.02-2.45-.27-.64-.54-.55-.74-.56h-.63c-.22 0-.57.08-.87.41-.3.33-1.14 1.11-1.14 2.72s1.17 3.16 1.33 3.38c.16.22 2.3 3.51 5.58 4.92.78.34 1.39.54 1.87.69.79.25 1.51.21 2.08.13.64-.1 1.9-.78 2.17-1.54.27-.76.27-1.41.19-1.54-.08-.14-.3-.22-.62-.38Z"/></svg>';
+
+  const styles = document.createElement('style');
+  styles.textContent = `
+    .cw-floating-whatsapp {
+      position: fixed;
+      right: max(28px, env(safe-area-inset-right));
+      bottom: calc(133px + env(safe-area-inset-bottom));
+      z-index: 46;
+      display: grid;
+      place-items: center;
+      box-sizing: border-box;
+      width: 58px;
+      height: 58px;
+      border: 1px solid rgba(255, 255, 255, .45);
+      border-radius: 50%;
+      background: #20bf64;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .38);
+    }
+    .cw-floating-whatsapp:hover { background: #19ad59; color: #fff; }
+    .cw-floating-whatsapp:focus-visible { outline: 3px solid #f0c85b; outline-offset: 3px; }
+    @media (max-width: 650px) {
+      .cw-floating-whatsapp {
+        right: max(18px, env(safe-area-inset-right));
+        bottom: calc(121px + env(safe-area-inset-bottom));
+        width: 54px;
+        height: 54px;
+      }
+    }
+  `;
+  document.head.append(styles);
+  document.body.append(whatsapp);
+}
+
 const toggle=document.querySelector('.nav-toggle'), links=document.querySelector('#navLinks');
 // Surface the FAQ beside Blog on pages using the shared navigation.
 if (links) {
@@ -107,7 +150,7 @@ document.querySelectorAll('#quoteForm, #rfq').forEach(function(form){
 document.addEventListener('click',function(event){
  const link=event.target.closest('a[href]');
  if(!link)return;
- const params={link_url:link.href,link_text:(link.textContent||'').trim().slice(0,100),page_location:location.href};
+ const params={link_url:link.href,link_text:(link.textContent.trim()||link.getAttribute('aria-label')||'').slice(0,100),page_location:location.href};
  if(link.href.indexOf('mailto:')===0)window.gtag&&window.gtag('event','email_click',params);
  if(link.href.indexOf('wa.me/')>-1)window.gtag&&window.gtag('event','whatsapp_click',params);
  if(link.hasAttribute('download')||/\.(pdf|zip|docx?|xlsx?|csv)$/i.test(link.pathname))window.gtag&&window.gtag('event','file_download',params);
