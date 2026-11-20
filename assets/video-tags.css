@@ -1,0 +1,20 @@
+.cw-video-tag,
+.video-card figcaption .cw-video-tag {
+  display: inline-block;
+  margin-inline-end: .55em;
+  margin-block: .2em;
+  padding: .2em .65em;
+  border: 1px solid #a9853b;
+  border-radius: 999px;
+  background: #302615;
+  color: #f8e4af;
+  font-family: inherit;
+  font-size: .75rem;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: normal;
+}
+
+#factory-videos article > .cw-video-tag {
+  margin-block-end: .5rem;
+}
