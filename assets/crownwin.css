@@ -480,8 +480,39 @@ body:not(.source-home) .product-quote-btn:hover{background:var(--gold);color:var
 .nav-links>li.nav-dropdown>a.dropdown-toggle::after{content:none}
 /* ===== /研究体检落地 ===== */
 
-/* 2026-09-22 手机端悬浮 WhatsApp */
-.floating-wa{display:none}@media(max-width:768px){.floating-cta{display:none!important}.floating-wa{display:inline-flex;align-items:center;gap:8px;position:fixed;right:14px;bottom:18px;z-index:998;background:#25D366;color:#fff;padding:12px 18px;border-radius:50px;font-family:Montserrat,Arial,sans-serif;font-weight:800;font-size:.85rem;letter-spacing:.02em;box-shadow:0 6px 20px rgba(0,0,0,.35);text-decoration:none}.floating-wa .wa-ic{width:20px;height:20px}}
+/* Floating WhatsApp contact for the main site. */
+body:not(.one-piece-landing) a.floating-wa {
+      position: fixed;
+      right: max(28px, env(safe-area-inset-right));
+      bottom: calc(133px + env(safe-area-inset-bottom));
+      z-index: 46;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0;
+      padding: 0;
+      text-decoration: none;
+      box-sizing: border-box;
+      width: 58px;
+      height: 58px;
+      border: 1px solid rgba(255, 255, 255, .45);
+      border-radius: 50%;
+      background: #20bf64;
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .38);
+    }
+    body:not(.one-piece-landing) a.floating-wa:hover { background: #19ad59; color: #fff; }
+    body:not(.one-piece-landing) a.floating-wa:focus-visible { outline: 3px solid #f0c85b; outline-offset: 3px; }
+    @media (max-width: 650px) {
+      body:not(.one-piece-landing) a.floating-wa {
+        right: max(18px, env(safe-area-inset-right));
+        bottom: calc(121px + env(safe-area-inset-bottom));
+        width: 54px;
+        height: 54px;
+      }
+    }
+body:not(.one-piece-landing) a.floating-wa .wa-ic { width: 32px; height: 32px; flex: none; }
+@media (max-width: 768px) { .floating-cta { display: none !important; } }
 
 /* 2026-09-22 顶栏 Get Quote 悬停 */
 .nav-links>li.nav-quote-cta>a:hover,.nav-links>li.nav-quote-cta>a:focus-visible{color:#fff!important;background:#7A5A17!important;border-color:#7A5A17!important;box-shadow:0 6px 18px rgba(122,90,23,.35);transform:translateY(-1px)}
